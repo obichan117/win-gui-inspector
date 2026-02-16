@@ -6,6 +6,7 @@ Uses pywinauto Desktop(backend="uia") to connect to any Windows application.
 
 from __future__ import annotations
 
+import contextlib
 import io
 import sys
 from datetime import datetime
@@ -76,10 +77,8 @@ class UIInspector:
             if windows:
                 print(f"\nAvailable windows ({len(windows)}):")
                 for w in windows[:20]:
-                    try:
+                    with contextlib.suppress(Exception):
                         print(f"  - {w.window_text()}")
-                    except Exception:
-                        pass
                 print("\nSpecify --title to connect to a window.")
             return False
 
@@ -155,11 +154,7 @@ class UIInspector:
         ctrl_type = element.get("control_type", "")
         auto_id = element.get("automation_id", "")
 
-        if (
-            name
-            or auto_id
-            or ctrl_type in ["Button", "Edit", "MenuItem", "TabItem", "ComboBox"]
-        ):
+        if name or auto_id or ctrl_type in ["Button", "Edit", "MenuItem", "TabItem", "ComboBox"]:
             line = f"{prefix}[{ctrl_type}]"
             if name:
                 line += f" '{name}'"
