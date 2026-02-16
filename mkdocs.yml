@@ -1,0 +1,35 @@
+site_name: win-gui-inspector
+site_description: Windows GUI element inspector and mapper using pywinauto
+site_url: https://obichan117.github.io/win-gui-inspector
+repo_url: https://github.com/obichan117/win-gui-inspector
+repo_name: obichan117/win-gui-inspector
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - CLI Reference: cli-reference.md
+  - Workflow Guide: workflow-guide.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
